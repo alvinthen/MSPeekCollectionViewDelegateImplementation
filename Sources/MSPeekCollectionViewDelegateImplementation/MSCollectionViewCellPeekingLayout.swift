@@ -42,8 +42,11 @@ open class MSCollectionViewCellPeekingLayout: UICollectionViewLayout {
     }
 
     var numberOfItems: Int {
-        return collectionView?.numberOfItems(inSection: 0) ?? 0
-    }
+        if collectionView?.numberOfSections ?? 0 > 0 {
+          return collectionView?.numberOfItems(inSection: 0) ?? 0
+        }
+        return 0
+      }
 
     var peekingLength: CGFloat {
         return dataSource?.cellPeekingLayoutPeekingLength(self) ?? 0
